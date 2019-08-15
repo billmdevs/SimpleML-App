@@ -1,1 +1,1 @@
-# SimpleML-app
+# ML-app
