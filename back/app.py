@@ -13,7 +13,7 @@ model = app.model('Prediction params',
                     'select1': fields.Integer(required = True, description="Select 1", help="Select 1 cannot be blank"),
                     'select2': fields.Integer(required = True, description="Select 2", help="Select 2 cannot be blank"),
                     'select3': fields.Integer(required = True, description="Select 3", help="Select 3 cannot be blank")})
-# classifier = joblib.load("classifier.joblib")
+classifier = joblib.load("classifier.joblib")
 
 @name_space.route("/")
 class Main(Resource):
@@ -43,3 +43,11 @@ class Main(Resource):
                 "status": "Could not make prediction",
                 "error": str(error)
             })
+        
+        prediction = classifier.predict(np.array(data).reshape(1, -1))
+        types = { 0: "Iris Setosa", 1: "Iris Versicolour ", 2: "Iris Virginica"}
+        response = jsonify({
+            "statusCode": 200,
+            "status": "Prediction made",
+            "result": "The type of iris plant is: " + types[prediction[0]]
+        })
