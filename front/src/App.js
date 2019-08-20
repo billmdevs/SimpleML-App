@@ -68,7 +68,7 @@ class App extends Component {
         return (
             <Container>
                 <div>
-                    <h1 className="title">ML template App</h1>
+                    <h1 className="title">SimpleML-App</h1>
                 </div>
                 <div className="content">
                     <Form>
