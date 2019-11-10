@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify, make_response
 from flask_restplus import Api, Resource, fields
 from sklearn.externals import joblib
+import numpy as np
+import sys
 
 flask_app = Flask(__name__)
-app = Api(app = flask_app, version = "1.0", title = "SimpleML-App", description = "Predict results using a trained ML-model")
+app = Api(app = flask_app, version = "1.0", title = "Iris Plant Classifier", description = "Predict results from Iris plant types.")
 
 name_space = app.namespace('prediction', description='Prediction APIs')
 
@@ -27,12 +29,14 @@ class Main(Resource):
     @app.expect(model)
     def post(self):
         try:
-            formData = request.jsonify
+            formData = request.get_json()
             data = [val for val in formData.values()]
-            prediction = classifier.predict(data)
+            prediction = classifier.predict(np.array(data).reshape(1, -1))
+            types = { 0: "Iris Setosa", 1: "Iris Versicolour ", 2: "Iris Virginica"}
             response = jsonify({
+                "statusCode": 200,
                 "status": "Prediction made",
-                "result": "Prediction: " + str(data)
+                "result": "The type of iris plant is: " + types[prediction[0]]
             })
             response.headers.add("Access-Control-Allow-Origin", "*")
             return response
@@ -42,11 +46,7 @@ class Main(Resource):
                 "status": "Could not make prediction",
                 "error": str(error)
             })
-        
-        prediction = classifier.predict(np.array(data).reshape(1, -1))
-        types = { 0: "Iris Setosa", 1: "Iris Versicolour ", 2: "Iris Virginica"}
-        response = jsonify({
-            "statusCode": 200,
-            "status": "Prediction made",
-            "result": "The type of iris plant is: " + types[prediction[0]]
-        })
+
+#if __name__ == "__main__":
+ #   flask_app.run(port=5000)
+  #  pass
