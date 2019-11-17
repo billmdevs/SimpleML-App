@@ -3,9 +3,10 @@
 This is an implementation of a [Iris plant](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=36&cad=rja&uact=8&ved=2ahUKEwj3wNDE2fHlAhWOZd8KHc4GD4sQmhMwI3oECA4QAg&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FIris_(plant)&usg=AOvVaw0ZZWPXe5xpUxEskckOA0ER) classifier using Flask and React.
 
 # How to use it
-To run it first clone the repository and run the front end
-But before that make sure your node version is up to date
-  `$ git clone https://github.com/ghostbill/SimpleML-App`
+To run it first clone the repository.
+ `$ git clone https://github.com/ghostbill/SimpleML-App`
+But before that make sure your node version is up to date.
+To run the front end execute the following command:
  ```$ cd SimpleML-APP 
     $ python -m venv venv
     $ cd front/
