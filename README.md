@@ -6,7 +6,8 @@ This is an implementation of a [Iris plant](https://www.google.com/url?sa=t&rct=
 To run it first clone the repository.
 
  `$ git clone https://github.com/ghostbill/SimpleML-App`
-But before that make sure your node version is up to date.
+ 
+ But before that make sure your node version is up to date.
 To run the front end execute the following command:
  ```$ cd SimpleML-APP 
     $ python -m venv venv
